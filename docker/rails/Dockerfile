@@ -1,4 +1,4 @@
-FROM ruby:3.2.0-slim-buster
+FROM --platform=linux/arm64/v8 ruby:3.2.0
 
 WORKDIR /app
 
