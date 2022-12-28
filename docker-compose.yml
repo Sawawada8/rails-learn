@@ -1,0 +1,42 @@
+version: '3'
+services:
+  rails:
+    tty: true
+    image: ruby:3.2.0
+    platform: linux/arm64/v8
+    # build:
+    #   context: ./docker/rails
+    #   dockerfile: Dockerfile
+    ports:
+      - '3456:3000'
+    working_dir: /app
+    volumes:
+      - '.:/app/'
+    depends_on:
+      - mysql
+  mysql:
+    image: 'mysql/mysql-server:5.6.51-1.1.19'
+    ports:
+      - '${DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_DATABASE: rails-demo
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_TCP_PORT: 9876
+    expose:
+      - '9876:3306'
+    volumes:
+      - 'demo:/var/lib/mysql'
+      # - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin'
+    ports:
+      - '3457:80'
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 9876
+    depends_on:
+      - mysql
+
+volumes:
+  demo:
+    driver: local
