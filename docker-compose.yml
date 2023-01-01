@@ -13,7 +13,7 @@ services:
     volumes:
       - '.:/app/'
     environment:
-      - RAILS_ENV: 'development'
+      RAILS_ENV: 'development'
     depends_on:
       - mysql
   mysql:
@@ -21,14 +21,16 @@ services:
     ports:
       - '9876:3306'
     environment:
+      MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: rails-demo
       MYSQL_ROOT_PASSWORD: password
       MYSQL_TCP_PORT: 9876
     expose:
       - '9876:3306'
     volumes:
-      - 'demo:/var/lib/mysql'
-      # - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - 'demo2:/var/lib/mysql'
+      # - 'demo:/var/lib/mysql'
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
   phpmyadmin:
     image: 'phpmyadmin/phpmyadmin'
     ports:
@@ -40,5 +42,7 @@ services:
       - mysql
 
 volumes:
+  demo2:
+    driver: local
   demo:
     driver: local
