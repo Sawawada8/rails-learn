@@ -9,6 +9,7 @@ services:
       dockerfile: ./docker/rails/Dockerfile
     ports:
       - '3456:3000'
+      # http://localhost:3456
     working_dir: /app
     volumes:
       - '.:/app/'
@@ -35,6 +36,7 @@ services:
     image: 'phpmyadmin/phpmyadmin'
     ports:
       - '3457:80'
+      # http://localhost:3457
     environment:
       PMA_HOST: mysql
       PMA_PORT: 9876

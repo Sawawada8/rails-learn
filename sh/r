@@ -1,0 +1,5 @@
+#!/bin/bash
+docker compose exec rails $@
+# bin/rails db:migrate
+# bin/rails g scaffold <Model> <column>:<type> ...
+# bin/rails db:rollback
