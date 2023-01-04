@@ -9,4 +9,10 @@ describe 'demo' do
     it 'isTest' do
         expect(Rails.env).to eq 'test'
     end
+
+    it 'factory learn' do
+        task = create(:task)
+        expect(task).not_to eq nil
+        expect(task.title).to eq 'factory task title'
+    end
 end
