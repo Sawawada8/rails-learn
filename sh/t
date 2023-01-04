@@ -1,6 +1,5 @@
 #!/bin/bash
-docker compose exec rails $@
+docker compose exec rails bundle exec rspec $@
 # bin/rails db:migrate
-# bin/rails db:migrate RAILS_ENV=test
 # bin/rails g scaffold <Model> <column>:<type> ...
 # bin/rails db:rollback
