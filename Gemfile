@@ -74,4 +74,6 @@ group :test do
   gem 'rspec-rails'
   gem 'vcr'
   gem 'webmock'
+
+  gem 'database_cleaner-active_record'
 end
