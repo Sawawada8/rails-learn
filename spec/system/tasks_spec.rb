@@ -6,6 +6,9 @@ describe 'demo system spec', type: :system do
     end
 
     scenario 'demo' do
+        task = Task.find_by(title: 'test task')
+        expect(task).to eq nil
+
         # 指定のコントローラーのアクションにアクセス
         visit 'tasks#index'
         # 指定の文字列のリンクをクリック
@@ -18,7 +21,7 @@ describe 'demo system spec', type: :system do
         click_button 'Create Task'
 
         # task が追加されたことを確認する
-        tasks = Task::all
-        expect(tasks.count).to eq 1
+        task = Task.find_by(title: 'test task')
+        expect(task).not_to eq nil
     end
 end
